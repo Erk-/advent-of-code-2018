@@ -1,0 +1,15 @@
+[package]
+name = "AdventOfCode"
+version = "2018.12.1"
+authors = ["Valdemar Erk <v@erk.io>"]
+
+[dependencies]
+
+
+[lib]
+name = "utils"
+path = "src/lib.rs"
+
+[[bin]]
+name = "day1"
+path = "src/day1.rs"
