@@ -13,23 +13,22 @@ fn main() {
 }
 
 fn part1() -> isize {
-    let input = wsv::<isize>(DAY1_INPUT1);
-    let iter = input.iter();
-    iter.fold(0, |acc, e| acc + e)
+    let input = wsv::<isize>(DAY1_INPUT1); // Load input as a whitespace seperated list.
+    input.iter().sum()
 }
 
 fn part2() -> isize {
-    let input = wsv::<isize>(DAY1_INPUT1);
-    let mut set = BTreeSet::new();
-    let mut counter = 0;
-    let mut acc = 0;
-    loop {
-        let iter = input.iter();
-        for e in iter {
-            acc += e;
-            if !set.insert(acc) {
-                return acc;
-            }
+    let input = wsv::<isize>(DAY1_INPUT1); // Load input as a whitespace seperated list.
+    let mut set = BTreeSet::new(); // BTreeSet seems to be faster than a HashSet.
+    let mut acc = 0; // Setes the start value of the accumulator
+    set.insert(0); // Insert the start value into the set.
+    let cycle = input.iter().cycle(); // Use cycle to make a infinite iterator.
+    for e in cycle {
+        acc += e;
+        if !set.insert(acc) {
+            // acc did already exist in the set.
+            return acc;
         }
     }
+    unreachable!();
 }
