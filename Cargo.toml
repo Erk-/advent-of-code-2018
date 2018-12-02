@@ -1,6 +1,6 @@
 [package]
 name = "AdventOfCode"
-version = "2018.12.1"
+version = "2018.12.2"
 authors = ["Valdemar Erk <v@erk.io>"]
 
 [dependencies]
@@ -13,3 +13,7 @@ path = "src/lib.rs"
 [[bin]]
 name = "day1"
 path = "src/day1.rs"
+
+[[bin]]
+name = "day2"
+path = "src/day2.rs"

@@ -1,7 +1,7 @@
 extern crate utils;
 
 mod data;
-use data::DAY1_INPUT1;
+use data::DAY1_INPUT;
 
 use std::collections::BTreeSet;
 
@@ -13,12 +13,12 @@ fn main() {
 }
 
 fn part1() -> isize {
-    let input = wsv::<isize>(DAY1_INPUT1); // Load input as a whitespace seperated list.
+    let input = wsv::<isize>(DAY1_INPUT); // Load input as a whitespace seperated list.
     input.iter().sum()
 }
 
 fn part2() -> isize {
-    let input = wsv::<isize>(DAY1_INPUT1); // Load input as a whitespace seperated list.
+    let input = wsv::<isize>(DAY1_INPUT); // Load input as a whitespace seperated list.
     let mut set = BTreeSet::new(); // BTreeSet seems to be faster than a HashSet.
     let mut acc = 0; // Setes the start value of the accumulator
     set.insert(0); // Insert the start value into the set.
