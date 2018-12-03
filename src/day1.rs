@@ -1,28 +1,20 @@
-extern crate utils;
-
-mod data;
-use data::DAY1_INPUT;
+use crate::utils::wsv;
 
 use std::collections::BTreeSet;
 
-use utils::wsv;
-
-fn main() {
-    println!("Output 1: {}", part1());
-    println!("Output 2: {}", part2());
+#[aoc(day1, part1, Simple)]
+fn part1(input: &str) -> isize {
+    let in_arr = wsv::<isize>(input); // Load input as a whitespace seperated list.
+    in_arr.iter().sum()
 }
 
-fn part1() -> isize {
-    let input = wsv::<isize>(DAY1_INPUT); // Load input as a whitespace seperated list.
-    input.iter().sum()
-}
-
-fn part2() -> isize {
-    let input = wsv::<isize>(DAY1_INPUT); // Load input as a whitespace seperated list.
+#[aoc(day1, part2, Simple)]
+fn part2(input: &str) -> isize {
+    let in_arr = wsv::<isize>(input); // Load input as a whitespace seperated list.
     let mut set = BTreeSet::new(); // BTreeSet seems to be faster than a HashSet.
     let mut acc = 0; // Setes the start value of the accumulator
     set.insert(0); // Insert the start value into the set.
-    let cycle = input.iter().cycle(); // Use cycle to make a infinite iterator.
+    let cycle = in_arr.iter().cycle(); // Use cycle to make a infinite iterator.
     for e in cycle {
         acc += e;
         if !set.insert(acc) {

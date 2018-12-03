@@ -1,19 +1,12 @@
-mod data;
-use data::DAY2_INPUT;
-
 use std::fmt::Write;
 use std::collections::HashMap;
 
-fn main() {
-    println!("Output 1: {}", part1());
-    println!("Output 2: {}", part2());
-}
-
-fn part1() -> usize {
-    let input = DAY2_INPUT.split_whitespace();
+#[aoc(day2, part1, Simple)]
+fn part1(input: &str) -> usize {
+    let input_iter = input.split_whitespace();
     let mut con2 = 0;
     let mut con3 = 0;
-    for e in input {
+    for e in input_iter {
         let mut c2 = false;
         let mut c3 = false;
         for i in e.chars() {
@@ -30,18 +23,19 @@ fn part1() -> usize {
     (con2 * con3)
 }
 
-fn part2() -> String {
+#[aoc(day2, part2, Simple)]
+fn part2(input: &str) -> String {
     let mut firstmap: HashMap<&str, Vec<&str>> = HashMap::new();
     let mut secondmap: HashMap<&str, Vec<&str>> = HashMap::new();
-    let mut input = DAY2_INPUT.split_whitespace();
-    let fst = input.next().unwrap();
+    let mut input_iter = input.split_whitespace();
+    let fst = input_iter.next().unwrap();
     let splt = fst.len()/2;
     {
         let (a, b) = fst.split_at(splt);
         firstmap.insert(a, vec![fst]);
         secondmap.insert(b, vec![fst]);
     }
-    for e in input {
+    for e in input_iter {
         let (a, b) = e.split_at(splt);
         firstmap.entry(a).and_modify(|v| v.push(e)).or_insert_with(|| vec![e]);
         secondmap.entry(b).and_modify(|v| v.push(e)).or_insert_with(|| vec![e]);
@@ -100,7 +94,7 @@ fn print_diff(input: (&str, &str)) -> String {
     let iter = input.0.chars().zip(input.1.chars());
     for e in iter {
         if e.0 == e.1 {
-            write!(ret_str, "{}",  e.0);
+            let _ = write!(ret_str, "{}",  e.0);
         }
     }
     ret_str

@@ -1,16 +1,12 @@
-use std::str::FromStr;
+#![allow(non_snake_case)]
+#[macro_use] extern crate aoc_runner_derive;
+#[macro_use] extern crate lazy_static;
 
-pub fn csv<T>(input: &str) -> Vec<T>
-where T: FromStr,
-     <T as std::str::FromStr>::Err: std::fmt::Debug
-{
-    input.split(',').map(|e| T::from_str(e).expect("This should not happen!")).collect()
+pub mod utils;
+pub mod day1;
+pub mod day2;
+pub mod day3;
+
+aoc_lib! {
+    year = 2018
 }
-
-pub fn wsv<T>(input: &str) -> Vec<T>
-where T: FromStr,
-     <T as std::str::FromStr>::Err: std::fmt::Debug
-{
-    input.split_whitespace().map(|e| T::from_str(e).expect("This should not happen!")).collect()
-}
-
