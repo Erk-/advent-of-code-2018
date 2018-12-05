@@ -9,16 +9,16 @@ fn part1(input: &str) -> usize {
     let lines = input.split('\n');
     for line in lines {
         let (_, (x, y), (w, h)) = fabric_parser(line);
-        for x_row in x..(x+w) {
-            for y_col in y..(y+h) {
-                fabric[x_row][y_col] += 1;
+        for x_row in fabric.iter_mut().skip(x).take(w) {
+            for y_col in x_row.iter_mut().skip(y).take(h) {
+                *y_col += 1;
             }
         }
     }
         
     let mut more_than_one = 0;
     for e in fabric.iter().flatten() {
-        if e >= &2 {
+        if *e >= 2 {
             more_than_one += 1;
         }
     }
@@ -36,18 +36,18 @@ fn part2(input: &str) -> usize {
     for line in lines {
         let (id, (x, y), (w, h)) = fabric_parser(line);
         claims[id] = true;
-        for x_row in x..(x+w) {
-            for y_col in y..(y+h) {
-                fabric[x_row][y_col] += id;
+        for x_row in fabric.iter_mut().skip(x).take(w) {
+            for y_col in x_row.iter_mut().skip(y).take(h) {
+                *y_col += id;
             }
         }
     }
     let lines_2 = input.split('\n');
     for line in lines_2 {
         let (id, (x, y), (w, h)) = fabric_parser(line);
-        for x_row in x..(x+w) {
-            for y_col in y..(y+h) {
-                if fabric[x_row][y_col] != id {
+        for x_row in fabric.iter_mut().skip(x).take(w) {
+            for y_col in x_row.iter_mut().skip(y).take(h) {
+                if *y_col != id {
                     claims[id] = false;
                 }
             }
